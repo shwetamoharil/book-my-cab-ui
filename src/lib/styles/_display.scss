@@ -1,0 +1,7 @@
+$options: inline block inline-block flex grid none;
+
+@each $disp in $options {
+  .display-#{$disp} {
+    display: $disp;
+  }
+}
