@@ -38,6 +38,5 @@ Here are the dependencies used in this project, with their versions:
 | axios         | ^1.3.5  |
 
 ## NOTE
-
     Develop branch is updated with master branch and all the feature branch all merge in develop branch;
-        pull develop branch in your respective feature branch , resolve merge conflict and raise pr against develop branch.
+    pull develop branch in your respective feature branch , resolve merge conflict and raise pr against develop branch.
