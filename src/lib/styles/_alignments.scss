@@ -1,0 +1,35 @@
+$alignments: center start end space-between space-around space-evenly baseline
+  stretch;
+$directions: row column row-reverse column-reverse;
+
+@each $align in $alignments {
+  .justify-#{align} {
+    justify-content: $align;
+  }
+
+  .item-#{align} {
+    align-items: $align;
+  }
+
+  .justify-items-#{align} {
+    justify-items: $align;
+  }
+
+  .content-#{align} {
+    align-content: $align;
+  }
+
+  .place-content-#{$align} {
+    place-content: $align;
+  }
+
+  .place-items-#{$align} {
+    place-items: $align;
+  }
+}
+
+@each $dir in $directions {
+  .flex-#{$dir} {
+    flex-direction: $dir;
+  }
+}
