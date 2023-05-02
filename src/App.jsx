@@ -1,5 +1,6 @@
-import "./App.scss";
-import { Outlet } from "react-router-dom";
+import React from 'react';
+import './App.scss';
+import { Outlet } from 'react-router-dom';
 // import { useTranslation } from "react-i18next";
 
 function App() {
