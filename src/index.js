@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import './i18n';
+import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { router } from './routes/routes';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

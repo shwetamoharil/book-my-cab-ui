@@ -2,8 +2,17 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../styles/Login.scss';
-
+import { login } from '../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncAPICall } from '../slice/httpReq';
+import { environment } from '../environment/environment';
+import { setUserData } from '../slice/userData';
+const apiKey = environment.firebaseConfig.apiKey;
+const loginURL =
+  'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword';
 function Login() {
+  const dispatch = useDispatch();
+  const { data, isLoading, isError } = useSelector(state => state.httpReq);
   const initialValues = {
     username: '',
     password: '',
@@ -15,10 +24,24 @@ function Login() {
     password: Yup.string().required('Password is required'),
   });
 
-  const onSubmit = values => {
-    console.log(values);
+  const onSubmit = async values => {
+    const apiCall = {
+      method: 'post',
+      endpoint: `${loginURL}?key=${apiKey}`,
+      payload: {
+        email: values.username,
+        password: values.password,
+        returnSecureToken: values.keepMeSignedIn,
+      },
+    };
+    dispatch(asyncAPICall(apiCall));
   };
-
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+  if (data) {
+    dispatch(setUserData(data));
+  }
   return (
     <div className="login-form-container">
       <h2>Hello, Welcome</h2>
